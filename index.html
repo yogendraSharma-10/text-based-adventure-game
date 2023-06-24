@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Whispering Labyrinth - A Text Adventure</title>
+    <meta name="description" content="An immersive text-based role-playing game where player choices drive the narrative, featuring inventory management, branching storylines, and persistent game state.">
+    <meta name="keywords" content="text adventure, RPG, interactive fiction, JavaScript game, HTML game">
+    <meta name="author" content="Your Name/Company Name">
+
+    <!-- Favicon (optional, but good practice) -->
+    <!-- <link rel="icon" type="image/png" href="favicon.png"> -->
+
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="src/style.css">
+
+    <!-- Preconnect to potential external services if applicable (e.g., CDN for fonts, analytics) -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+
+    <!-- Google Fonts (example) -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> -->
+</head>
+<body>
+    <div id="game-container">
+        <header class="game-header">
+            <h1 id="game-title">The Whispering Labyrinth</h1>
+            <p id="game-subtitle">A Journey Through Shadows and Choices</p>
+        </header>
+
+        <main class="game-main">
+            <section id="narrative-section" class="game-section">
+                <div id="game-text" class="narrative-display">
+                    <!-- Game narrative will be displayed here -->
+                    <p>Welcome, adventurer. Your journey begins...</p>
+                </div>
+            </section>
+
+            <section id="choices-section" class="game-section">
+                <div id="choices-container" class="choices-display">
+                    <!-- Player choices will be rendered here -->
+                    <button class="choice-button" data-choice-id="start">Begin Adventure</button>
+                </div>
+            </section>
+
+            <aside id="sidebar" class="game-sidebar">
+                <section id="player-stats" class="sidebar-section">
+                    <h2>Player Stats</h2>
+                    <p><strong>Name:</strong> <span id="player-name">Hero</span></p>
+                    <p><strong>Health:</strong> <span id="player-health">100</span></p>
+                    <p><strong>Gold:</strong> <span id="player-gold">0</span></p>
+                    <!-- Add more stats as needed -->
+                </section>
+
+                <section id="inventory" class="sidebar-section">
+                    <h2>Inventory</h2>
+                    <ul id="inventory-list">
+                        <!-- Inventory items will be listed here -->
+                        <li>Empty</li>
+                    </ul>
+                </section>
+
+                <section id="game-actions" class="sidebar-section">
+                    <h2>Actions</h2>
+                    <button id="save-game-button" class="action-button">Save Game</button>
+                    <button id="load-game-button" class="action-button">Load Game</button>
+                    <button id="reset-game-button" class="action-button">New Game</button>
+                    <!-- Example of cross-project integration: -->
+                    <button id="open-drawing-board" class="action-button" title="Open the Canvas Drawing Board for notes or maps">Open Map Sketch</button>
+                    <button id="open-code-editor" class="action-button" title="Open the In-Browser Code Editor for game dev tools">Open Dev Console</button>
+                </section>
+            </aside>
+        </main>
+
+        <footer class="game-footer">
+            <p>&copy; <span id="current-year"></span> The Whispering Labyrinth. All rights reserved.</p>
+            <p>Powered by JavaScript & Imagination.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript files -->
+    <!-- Defer loading of scripts to improve initial page load performance -->
+    <script type="module" src="src/config.js"></script>
+    <script type="module" src="src/player.js"></script>
+    <script type="module" src="src/narrative.js"></script>
+    <script type="module" src="src/ui.js"></script>
+    <script type="module" src="src/game.js"></script>
+    <script type="module" src="src/main.js"></script>
+
+    <script>
+        // Set current year dynamically for the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Cross-project integration handlers (example, these would typically open new tabs/windows or IFRAMEs)
+        document.getElementById('open-drawing-board').addEventListener('click', () => {
+            // In a real microservice setup, this might navigate to a different URL or open a modal
+            // For a simple demo, we'll just log or open a placeholder
+            console.log('Attempting to open Canvas Drawing Board...');
+            // window.open('http://localhost:3001/drawing-board', '_blank'); // Example URL for another service
+            alert('Opening the Canvas Drawing Board (simulated). Imagine a new tab or modal appearing!');
+        });
+
+        document.getElementById('open-code-editor').addEventListener('click', () => {
+            console.log('Attempting to open In-Browser Code Editor...');
+            // window.open('http://localhost:3002/code-editor', '_blank'); // Example URL for another service
+            alert('Opening the In-Browser Code Editor (simulated). This could be a powerful dev tool!');
+        });
+    </script>
+</body>
+</html>

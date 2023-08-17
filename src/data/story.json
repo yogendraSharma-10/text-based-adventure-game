@@ -1,0 +1,23 @@
+```json
+{
+  "initialState": {
+    "currentSceneId": "forest_edge",
+    "inventory": [],
+    "playerStats": {
+      "health": 100,
+      "strength": 10,
+      "intelligence": 8,
+      "courage": 5
+    }
+  },
+  "items": {
+    "rusty_sword": {
+      "id": "rusty_sword",
+      "name": "Rusty Sword",
+      "description": "A dull, old sword. Better than nothing.",
+      "canUse": false,
+      "attackBonus": 5
+    },
+    "torch": {
+      "id": "torch",
+      

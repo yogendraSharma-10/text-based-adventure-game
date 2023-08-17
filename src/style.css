@@ -1,0 +1,412 @@
+/*
+ * src/style.css
+ *
+ * Styles for the Text-Based Adventure Game.
+ * Provides a dark, immersive theme with clear readability and interactive elements.
+ */
+
+/* --- Global Styles & Resets --- */
+:root {
+    --color-background: #1a1a2e;
+    --color-text-primary: #e0e0e0;
+    --color-text-secondary: #b0b0b0;
+    --color-accent-primary: #e94560;
+    --color-accent-secondary: #0f3460;
+    --color-border: #0f3460;
+    --color-button-bg: #0f3460;
+    --color-button-hover: #e94560;
+    --color-button-text: #e0e0e0;
+    --color-inventory-bg: #2c2c4a;
+    --color-stats-bg: #2c2c4a;
+    --color-health-bar: #28a745; /* Green */
+    --color-mana-bar: #007bff; /* Blue */
+
+    --font-family-primary: 'Roboto Mono', monospace;
+    --font-family-secondary: 'Press Start 2P', cursive; /* For titles/retro feel */
+
+    --spacing-unit: 1rem;
+    --border-radius-small: 4px;
+    --border-radius-medium: 8px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family-primary);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+/* --- Layout Container --- */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: var(--spacing-unit);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    min-height: calc(100vh - 4rem); /* Ensure it takes up most of the viewport height */
+}
+
+/* --- Header --- */
+#game-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+#game-title {
+    font-family: var(--font-family-secondary);
+    font-size: 2.5rem;
+    color: var(--color-accent-primary);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+/* --- Main Game Area --- */
+.game-main {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    flex-grow: 1;
+}
+
+.game-content {
+    flex: 3; /* Takes up more space */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.game-sidebar {
+    flex: 1; /* Takes up less space */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 200px; /* Ensure sidebar has a minimum width */
+}
+
+/* --- Game Output (Narrative Text) --- */
+#game-output {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--color-border);
+    min-height: 200px;
+    overflow-y: auto;
+    max-height: 60vh; /* Limit height for long narratives */
+    flex-grow: 1; /* Allows it to expand */
+}
+
+#game-output p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--color-text-primary);
+}
+
+#game-output p:last-child {
+    margin-bottom: 0;
+}
+
+/* Special text styles */
+.narrative-highlight {
+    color: var(--color-accent-primary);
+    font-weight: bold;
+}
+
+.narrative-item {
+    color: var(--color-accent-secondary);
+    font-style: italic;
+}
+
+/* --- Choices Container --- */
+#choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.choice-button {
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+    border: 1px solid var(--color-border);
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-small);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: left;
+    width: 100%;
+}
+
+.choice-button:hover {
+    background-color: var(--color-button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.choice-button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+.choice-button:disabled {
+    background-color: #4a4a6a;
+    color: #999;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+    box-shadow: none;
+}
+
+/* --- Player Stats --- */
+#player-stats {
+    background-color: var(--color-stats-bg);
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--color-border);
+}
+
+#player-stats h2 {
+    font-family: var(--font-family-secondary);
+    font-size: 1.2rem;
+    color: var(--color-accent-primary);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.stat-label {
+    color: var(--color-text-secondary);
+}
+
+.stat-value {
+    font-weight: bold;
+    color: var(--color-text-primary);
+}
+
+.progress-bar-container {
+    width: 100%;
+    background-color: #333;
+    border-radius: var(--border-radius-small);
+    height: 10px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%; /* Will be set by JS */
+    border-radius: var(--border-radius-small);
+    transition: width 0.5s ease-in-out;
+}
+
+#health-bar .progress-bar { background-color: var(--color-health-bar); }
+#mana-bar .progress-bar { background-color: var(--color-mana-bar); }
+
+
+/* --- Inventory Display --- */
+#inventory-display {
+    background-color: var(--color-inventory-bg);
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--color-border);
+}
+
+#inventory-display h2 {
+    font-family: var(--font-family-secondary);
+    font-size: 1.2rem;
+    color: var(--color-accent-primary);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+#inventory-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#inventory-list li {
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+#inventory-list li:last-child {
+    border-bottom: none;
+}
+
+.inventory-item-name {
+    color: var(--color-text-primary);
+}
+
+.inventory-item-quantity {
+    color: var(--color-text-secondary);
+    font-style: italic;
+}
+
+.empty-inventory-message {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+/* --- Input Area (if text input is needed) --- */
+#input-area {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+#text-input {
+    flex-grow: 1;
+    padding: 0.8rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-small);
+    background-color: rgba(0, 0, 0, 0.3);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-primary);
+    font-size: 1rem;
+}
+
+#text-input::placeholder {
+    color: var(--color-text-secondary);
+}
+
+#submit-input {
+    background-color: var(--color-accent-secondary);
+    color: var(--color-button-text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#submit-input:hover {
+    background-color: var(--color-accent-primary);
+}
+
+/* --- Utility Classes --- */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    #game-container {
+        margin: 1rem auto;
+        padding: 0.8rem;
+        min-height: calc(100vh - 2rem);
+    }
+
+    #game-title {
+        font-size: 2rem;
+    }
+
+    .game-main {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .game-sidebar {
+        min-width: unset; /* Remove min-width on small screens */
+    }
+
+    #game-output {
+        max-height: 50vh; /* Adjust max-height for smaller screens */
+        padding: 1rem;
+    }
+
+    #game-output p {
+        font-size: 1rem;
+    }
+
+    .choice-button {
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    #player-stats h2,
+    #inventory-display h2 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #game-title {
+        font-size: 1.8rem;
+    }
+
+    .game-main {
+        gap: 0.8rem;
+    }
+
+    #game-output {
+        padding: 0.8rem;
+    }
+
+    .choice-button {
+        font-size: 0.9rem;
+    }
+}
+
+/* --- Scrollbar Styling (Webkit) --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-background);
+    border-radius: var(--border-radius-small);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent-secondary);
+    border-radius: var(--border-radius-small);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-primary);
+}
+
+/* --- Font Imports (for local development/testing, typically handled in index.html) --- */
+/*
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:wght@400;700&display=swap');
+*/

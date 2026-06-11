@@ -1,0 +1,50 @@
+{
+  "name": "text-adventure-game",
+  "version": "1.0.0",
+  "description": "An immersive text-based role-playing game where player choices drive the narrative, featuring inventory management, branching storylines, and persistent game state. This project is part of a larger interconnected system, designed to potentially integrate with services like a Canvas Drawing Board (for map visualization) or an In-Browser Code Editor (for modding/scripting capabilities).",
+  "private": true,
+  "scripts": {
+    "start": "http-server . -c-1 -o",
+    "dev": "npm run start",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write \"src/**/*.js\" \"src/**/*.css\" \"index.html\"",
+    "format:check": "prettier --check \"src/**/*.js\" \"src/**/*.css\" \"index.html\"",
+    "validate": "npm run lint && npm run format:check",
+    "test": "echo \"No tests specified yet for this project.\" && exit 0",
+    "build": "echo \"No specific build step required for this static HTML/JS project. Running validation...\" && npm run validate",
+    "deploy": "echo \"Placeholder for deployment script (e.g., to a static hosting service).\""
+  },
+  "keywords": [
+    "game",
+    "text-adventure",
+    "rpg",
+    "javascript",
+    "html",
+    "css",
+    "browser-game",
+    "interactive-story",
+    "microservice-integration",
+    "canvas-drawing-board-integration",
+    "in-browser-code-editor-integration"
+  ],
+  "author": "AI Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "http-server": "^14.1.1",
+    "prettier": "^3.2.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-organization/text-adventure-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-organization/text-adventure-game/issues"
+  },
+  "homepage": "https://github.com/your-organization/text-adventure-game#readme"
+}
